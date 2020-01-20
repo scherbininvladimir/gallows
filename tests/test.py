@@ -28,9 +28,16 @@ def test_letter_in_word_incorrecnt_input():
     with mock.patch('builtins.input', side_effect='_'):
         assert gallows.get_letter(word, [], 0) == None
 
-def test_main(capsys):
-    with mock.patch('builtins.input', side_effect=['B', 'L', 'A']):
+def test_main_win(capsys):
+    with mock.patch('builtins.input', side_effect=['%', 'B', 'L', 'A']):
         gallows.main(word)
         captured = capsys.readouterr()
         assert 'Congratulations! You win!' in captured.out
+
+def test_main_lose(capsys):
+    with mock.patch('builtins.input', side_effect=['e', 'r', 'r', 'o']):
+        gallows.main(word)
+        captured = capsys.readouterr()
+        assert 'You lose!' in captured.out
+
                
