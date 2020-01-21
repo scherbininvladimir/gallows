@@ -1,5 +1,5 @@
 import re
-# import os
+import os
 import random
 
 
@@ -17,14 +17,17 @@ def main(word):
                 guessed_letters.append(letter)
             continue
         else:
+            clear_screen()
             print(word)
             print("Congratulations! You win!")
             return
+    clear_screen()
     print(word)
     print("You lose!")
 
 
 def get_letter(word, guessed_letters, pentaly_points):
+    clear_screen()
     print("{}\t\tPentaly points: {}".format(display_word(word, guessed_letters), pentaly_points))
     test_letter = (input("Input letter: ")).upper()
     if len(test_letter) == 1 and re.search('[a-zA-Z]', test_letter):
@@ -45,11 +48,11 @@ def display_word(word, guessed_letters):
     return display_word
 
 
-# def clean_screen():
-    # if os.name == 'nt': 
-    #     _ = os.system('cls') 
-    # else: 
-    #     _ = os.system('clear') 
+def clear_screen():
+    if os.name == 'nt': 
+        _ = os.system('cls') 
+    else: 
+        _ = os.system('clear') 
 
 if __name__ == '__main__':
     word = random.choice(['skillfactory', 'testing', 'blackbox', 'pytest', 'unittest', 'coverage'])
